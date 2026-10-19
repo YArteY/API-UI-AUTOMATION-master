@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Hoja de ruta — API &amp; UI Automation Framework</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 14mm 18mm 14mm;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: #1f2933;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* ---------- Portada / cabecera ---------- */
+  .cover {
+    background: linear-gradient(135deg, #0f4c81 0%, #1a7f9e 60%, #16a085 100%);
+    color: #ffffff;
+    border-radius: 10px;
+    padding: 26px 28px;
+    margin-bottom: 20px;
+  }
+  .cover .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 8.5pt;
+    opacity: 0.9;
+    margin: 0 0 8px 0;
+  }
+  .cover h1 {
+    margin: 0 0 6px 0;
+    font-size: 22pt;
+    line-height: 1.15;
+  }
+  .cover .subtitle {
+    margin: 0;
+    font-size: 11pt;
+    opacity: 0.95;
+  }
+  .cover .meta {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 9pt;
+  }
+
+  h2 {
+    font-size: 13pt;
+    color: #0f4c81;
+    border-bottom: 2px solid #d7e3ec;
+    padding-bottom: 5px;
+    margin: 22px 0 10px 0;
+  }
+  h2 .num {
+    display: inline-block;
+    background: #0f4c81;
+    color: #fff;
+    border-radius: 6px;
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+    font-size: 11pt;
+  }
+
+  .callout {
+    background: #f1f7fb;
+    border-left: 4px solid #1a7f9e;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 0 0 14px 0;
+    font-size: 9.8pt;
+  }
+  .callout strong { color: #0f4c81; }
+  .callout ul { margin: 6px 0 0 0; padding-left: 18px; }
+  .callout li { margin-bottom: 3px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+    font-size: 9.4pt;
+  }
+  thead th {
+    background: #0f4c81;
+    color: #fff;
+    text-align: left;
+    padding: 7px 9px;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  tbody td {
+    border-bottom: 1px solid #e3ebf1;
+    padding: 7px 9px;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) { background: #f7fafc; }
+  tbody tr { page-break-inside: avoid; }
+
+  td.day { white-space: nowrap; font-weight: 600; color: #0f4c81; }
+  td.date { white-space: nowrap; color: #52606d; }
+  td.done { color: #17643f; }
+
+  .phase-note {
+    font-size: 9pt;
+    color: #52606d;
+    font-style: italic;
+    margin: 0 0 8px 0;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 8pt;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #e3f2ec;
+    color: #17643f;
+    border: 1px solid #bfe3d3;
+  }
+  .tag.rest { background: #fdeee0; color: #9a5b13; border-color: #f3d3b0; }
+
+  /* ---------- Línea de tiempo resumen ---------- */
+  .timeline {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 4px 0;
+  }
+  .tl-card {
+    flex: 1;
+    border: 1px solid #d7e3ec;
+    border-top: 4px solid #1a7f9e;
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: #fbfdff;
+  }
+  .tl-card h4 { margin: 0 0 4px 0; font-size: 9.5pt; color: #0f4c81; }
+  .tl-card p { margin: 0; font-size: 8.8pt; color: #52606d; }
+  .tl-card.week2 { border-top-color: #16a085; }
+  .tl-card.week3 { border-top-color: #e67e22; }
+
+  .footer {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px solid #d7e3ec;
+    font-size: 8.5pt;
+    color: #7b8794;
+    text-align: center;
+  }
+  .avoid-break { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+
+  <div class="cover">
+    <p class="eyebrow">Plan de trabajo · QA Automation</p>
+    <h1>Hoja de ruta: API &amp; UI Automation Framework</h1>
+    <p class="subtitle">Plan día por día para finalizar el framework de pruebas automatizadas de API y UI.</p>
+    <div class="meta">
+      <span class="chip">📅 19 oct → 5 nov</span>
+      <span class="chip">⏱️ 18 días</span>
+      <span class="chip">🎯 Entrega: jueves 5 de noviembre</span>
+      <span class="chip">🛠️ Python · pytest · Selenium</span>
+    </div>
+  </div>
+
+  <div class="callout avoid-break">
+    <strong>Supuestos del plan</strong>
+    <ul>
+      <li>Disponibilidad de <strong>2 a 3 horas por día</strong> en días laborables.</li>
+      <li><strong>Sábados</strong> como días ligeros y <strong>domingos</strong> de descanso o recuperación.</li>
+      <li>El <strong>4 y 5 de noviembre</strong> quedan como colchón para revisión y entrega.</li>
+      <li>Si hay atraso, el primer recorte es la parametrización (día 11) y el segundo, la cobertura con pytest-cov (día 13). El núcleo (git + API + UI + CI) es intocable.</li>
+    </ul>
+  </div>
+
+  <!-- FASE 1 -->
+  <h2><span class="num">1</span>Fundaciones <span style="font-weight:400;font-size:10pt;color:#7b8794;">(19–20 oct)</span></h2>
+  <table>
+    <thead>
+      <tr><th style="width:38px;">Día</th><th style="width:78px;">Fecha</th><th>Tareas clave</th><th style="width:190px;">Listo cuando…</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day">1</td><td class="date">Lun 19/10</td>
+        <td><code>git init</code> + <code>.gitignore</code> (<code>.venv/</code>, <code>__pycache__/</code>, <code>.pytest_cache/</code>, <code>reports/</code>). Primer commit. Crear el repositorio en GitHub y subir el proyecto.</td>
+        <td class="done">El código está en GitHub y el README se ve en la página del repositorio.</td>
+      </tr>
+      <tr>
+        <td class="day">2</td><td class="date">Mar 20/10</td>
+        <td><strong>Integración continua básica</strong>: <code>.github/workflows/tests.yml</code> que instala dependencias y ejecuta los tests de API. Añadir el <em>badge</em> al README. Aplicar los marcadores de API.</td>
+        <td class="done">El pipeline pasa en verde y <code>pytest -m smoke</code> ya ejecuta pruebas.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FASE 2 -->
+  <h2><span class="num">2</span>API al 100 % <span style="font-weight:400;font-size:10pt;color:#7b8794;">(21–23 oct)</span></h2>
+  <table>
+    <thead>
+      <tr><th style="width:38px;">Día</th><th style="width:78px;">Fecha</th><th>Tareas clave</th><th style="width:190px;">Listo cuando…</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day">3</td><td class="date">Mié 21/10</td>
+        <td>Sacar los <em>payloads</em> escritos dentro de los tests a <code>data/products.py</code>. Parametrizar búsquedas, identificadores, categorías y paginación con <code>@pytest.mark.parametrize</code>. Crear <code>tests/api/__init__.py</code>.</td>
+        <td class="done">Sin duplicación de datos y al menos 3 tests parametrizados.</td>
+      </tr>
+      <tr>
+        <td class="day">4</td><td class="date">Jue 22/10</td>
+        <td><strong>Ampliar cobertura de API</strong>: casos negativos y de borde (login sin token, <code>/auth/me</code> sin autorización, identificadores inválidos, <code>limit=0</code>, <code>skip</code> fuera de rango).</td>
+        <td class="done">+8 casos nuevos y todos pasan.</td>
+      </tr>
+      <tr>
+        <td class="day">5</td><td class="date">Vie 23/10</td>
+        <td>Revisión de la capa API: mensajes de aserción claros, limpiar <code>utils/config.py</code>, unificar nombres de tests.</td>
+        <td class="done">La suite de API es consistente y está entera en verde.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FASE 3 -->
+  <h2><span class="num">3</span>UI al 100 % <span style="font-weight:400;font-size:10pt;color:#7b8794;">(24–29 oct)</span></h2>
+  <table>
+    <thead>
+      <tr><th style="width:38px;">Día</th><th style="width:78px;">Fecha</th><th>Tareas clave</th><th style="width:190px;">Listo cuando…</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day">6</td><td class="date">Sáb 24/10</td>
+        <td>Crear Page Objects nuevos: <code>pages/cart.py</code>, <code>pages/checkout.py</code> y un menú lateral. Primeros tests de <strong>carrito</strong>: añadir varios productos, quitar, verificar contador, ir al carrito.</td>
+        <td class="done">Existen 4 o más tests de carrito en verde.</td>
+      </tr>
+      <tr>
+        <td class="day">7</td><td class="date">Dom 25/10</td>
+        <td><span class="tag rest">Descanso / buffer</span></td>
+        <td class="done">—</td>
+      </tr>
+      <tr>
+        <td class="day">8</td><td class="date">Lun 26/10</td>
+        <td>Tests de <strong>ordenamiento</strong> (precio, nombre) y <strong>cierre de sesión</strong> (logout) + "reset app state".</td>
+        <td class="done">Los flujos de ordenar y salir están cubiertos.</td>
+      </tr>
+      <tr>
+        <td class="day">9</td><td class="date">Mar 27/10</td>
+        <td>Flujo completo de <strong>pago (checkout)</strong>: añadir → carrito → datos → resumen → finalizar → confirmación.</td>
+        <td class="done">El flujo de compra feliz está cubierto de principio a fin.</td>
+      </tr>
+      <tr>
+        <td class="day">10</td><td class="date">Mié 28/10</td>
+        <td><strong>Casos negativos de UI</strong>: usuario bloqueado (<code>locked_out_user</code>), credenciales inválidas, campos vacíos y mensajes de error esperados.</td>
+        <td class="done">Al menos 4 negativos de UI que validan el texto de error.</td>
+      </tr>
+      <tr>
+        <td class="day">11</td><td class="date">Jue 29/10</td>
+        <td>Parametrizar los tests de UI (login, ordenamiento) y mover los tiempos de espera a <code>utils/config.py</code>.</td>
+        <td class="done">Sin números mágicos ni casos repetidos.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FASE 4 -->
+  <h2><span class="num">4</span>Calidad y CI completo <span style="font-weight:400;font-size:10pt;color:#7b8794;">(30 oct – 1 nov)</span></h2>
+  <table>
+    <thead>
+      <tr><th style="width:38px;">Día</th><th style="width:78px;">Fecha</th><th>Tareas clave</th><th style="width:190px;">Listo cuando…</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day">12</td><td class="date">Vie 30/10</td>
+        <td><strong>Analizador de código <code>ruff</code></strong> + formateo. Corregir los avisos.</td>
+        <td class="done"><code>ruff check</code> sin errores.</td>
+      </tr>
+      <tr>
+        <td class="day">13</td><td class="date">Sáb 31/10</td>
+        <td><strong>Cobertura con <code>pytest-cov</code></strong> y extender la integración continua para correr también las pruebas de UI en modo <em>headless</em>.</td>
+        <td class="done">El pipeline corre API <strong>y</strong> UI sin navegador visible.</td>
+      </tr>
+      <tr>
+        <td class="day">14</td><td class="date">Dom 01/11</td>
+        <td><span class="tag rest">Descanso / buffer</span></td>
+        <td class="done">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FASE 5 -->
+  <h2><span class="num">5</span>Cierre y entrega <span style="font-weight:400;font-size:10pt;color:#7b8794;">(2–5 nov)</span></h2>
+  <table>
+    <thead>
+      <tr><th style="width:38px;">Día</th><th style="width:78px;">Fecha</th><th>Tareas clave</th><th style="width:190px;">Listo cuando…</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="day">15</td><td class="date">Lun 02/11</td>
+        <td><strong>Documentación final</strong>: actualizar el README (badges de estado y cobertura, lista de casos, capturas del reporte HTML) y añadir <code>CHANGELOG.md</code>.</td>
+        <td class="done">El README documenta todo lo nuevo.</td>
+      </tr>
+      <tr>
+        <td class="day">16</td><td class="date">Mar 03/11</td>
+        <td><strong>Revisión integral</strong>: ejecutar toda la suite, corregir hallazgos y verificar la independencia de cada caso.</td>
+        <td class="done">Toda la suite pasa de forma repetible.</td>
+      </tr>
+      <tr>
+        <td class="day">17</td><td class="date">Mié 04/11</td>
+        <td><strong>Congelar versión</strong>: crear la etiqueta <code>v1.0</code> y ensayar la demo o presentación del proyecto.</td>
+        <td class="done">Etiqueta creada y demo ensayada.</td>
+      </tr>
+      <tr>
+        <td class="day">18</td><td class="date">Jue 05/11</td>
+        <td><strong>Entrega final</strong>: push final, verificar el pipeline en verde y presentación.</td>
+        <td class="done">✅ Proyecto entregado.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- RESUMEN -->
+  <h2 style="border:none;margin-bottom:6px;">Resumen de las tres semanas</h2>
+  <div class="timeline avoid-break">
+    <div class="tl-card">
+      <h4>Semana 1 · 19–25 oct</h4>
+      <p>Git + CI → API completa → inicio de UI y carrito.</p>
+    </div>
+    <div class="tl-card week2">
+      <h4>Semana 2 · 26 oct–1 nov</h4>
+      <p>UI completa (checkout, negativos) → calidad y cobertura.</p>
+    </div>
+    <div class="tl-card week3">
+      <h4>Semana 3 · 2–5 nov</h4>
+      <p>Documentación → revisión → v1.0 → entrega.</p>
+    </div>
+  </div>
+
+  <div class="callout avoid-break" style="margin-top:16px;">
+    <strong>Carga de trabajo</strong><br>
+    16 días de trabajo efectivo + 2 días de colchón (4 y 5 de noviembre). Prioridad intocable:
+    control de versiones, API completa, UI completa e integración continua.
+  </div>
+
+  <div class="footer">
+    API &amp; UI Automation Framework · Hoja de ruta 19 oct – 5 nov · Documento generado el 19 de octubre.
+  </div>
+
+</body>
+</html>
