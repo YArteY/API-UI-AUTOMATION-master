@@ -1,7 +1,10 @@
+import pytest
 from utils.validators import (assert_response_time, assert_user_structure, assert_users_list_structure, assert_empty_user_response, assert_carts_structure)
 from data.users import ADD_USER, UPDATE_USER_PAYLOAD
 
+pytestmark = pytest.mark.users
 
+@pytest.mark.smoke
 def test_get_all_users(api_client):
     response = api_client.users.get_all_users()
 
@@ -12,7 +15,7 @@ def test_get_all_users(api_client):
 
     assert_users_list_structure(data)
 
-
+@pytest.mark.smoke
 def test_get_single_user(api_client):
     user_id = 1
     response = api_client.users.get_single_user(user_id)

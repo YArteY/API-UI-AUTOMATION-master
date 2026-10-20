@@ -1,0 +1,30 @@
+name: Pruebas automatizadas
+
+on:                        # ¿Cuándo se ejecuta?
+  push:
+    branches: [ main ]     # en cada push a main
+  pull_request:
+    branches: [ main ]     # y en cada Pull Request hacia main
+
+jobs:
+  api-tests:
+    name: Pruebas de API
+    runs-on: ubuntu-latest # la máquina virtual (Linux)
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4      # trae tu repo a la máquina
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"       # versión del runner
+          cache: "pip"                 # acelera instalaciones futuras
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ejecutar pruebas de API
+        run: pytest tests/api -v
