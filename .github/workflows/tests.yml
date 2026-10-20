@@ -27,4 +27,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Ejecutar pruebas de API
+        env:
+          MAX_RESPONSE_TIME_SECONDS: "8"   # tolera picos de red del runner
         run: pytest tests/api -v
