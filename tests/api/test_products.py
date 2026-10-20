@@ -12,7 +12,7 @@ def test_get_all_products(api_client):
     assert_response_time(response)
     assert_product_list_structure(response.json())
 
-@pytest.mark.smoke
+
 def test_get_single_product(api_client):
     product_id= 5
     response = api_client.products.get_single_product(product_id)
@@ -77,7 +77,7 @@ def test_filter_products(api_client):
 
     assert_product_list_structure(data)
 
-@pytest.mark.smoke
+
 def test_get_all_categories(api_client):
     response = api_client.products.get_all_categories()
     data = response.json()
@@ -111,7 +111,7 @@ def test_fail_get_category_name(api_client):
     assert_response_time(response)
     assert_empty_response(response.json())
 
-@pytest.mark.smoke
+
 def test_success_add_product(api_client):
     payload = {
         "title": "iPhone 16",
@@ -163,7 +163,7 @@ def test_patch_product(api_client):
     assert data["id"] == product_id
     assert data["title"] == payload["title"]
 
-@pytest.mark.smoke
+
 def test_delete_product(api_client):
     product_id= 5
     response = api_client.products.delete_product(product_id)

@@ -15,12 +15,12 @@ def test_success_login(api_client):
     assert data['accessToken']
     assert_response_time(response)
 
-@pytest.mark.smoke
+
 def test_logout(authenticated_user):
     authenticated_user.auth.logout()
     assert 'Authorization' not in authenticated_user.session.headers
 
-@pytest.mark.smoke
+
 def test_failure_login(api_client):
     response = api_client.auth.login(INVALID_USER)
     data = response.json()
@@ -29,7 +29,7 @@ def test_failure_login(api_client):
     assert 'accessToken' not in data
     assert_response_time(response)
 
-@pytest.mark.smoke
+
 def test_current_user(authenticated_user):
     response = authenticated_user.auth.current_user()
 

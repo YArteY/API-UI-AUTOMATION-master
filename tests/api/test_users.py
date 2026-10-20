@@ -15,7 +15,7 @@ def test_get_all_users(api_client):
 
     assert_users_list_structure(data)
 
-@pytest.mark.smoke
+
 def test_get_single_user(api_client):
     user_id = 1
     response = api_client.users.get_single_user(user_id)
