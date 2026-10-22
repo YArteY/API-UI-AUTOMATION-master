@@ -6,9 +6,12 @@ class AuthAPI(BaseAPI):
         self.session.headers.update({'Authorization':
                                          f"Bearer {token}"})
 
-    def login(self, payload):
+    def _clear_token(self):
+        self.session.headers.pop('Authorization', None)
+
+    def login(self, payload, save_token=True):
         response = self.POST("/auth/login", payload)
-        if response.status_code == 200:
+        if response.status_code == 200 and save_token:
             self._set_token(response.json()['accessToken'])
         return response
 
