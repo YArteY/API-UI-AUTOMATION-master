@@ -2,7 +2,8 @@ import pytest
 
 from data.products import UPDATE_PRODUCT, PATCH_PRODUCT, SUCCESS_ADD_PRODUCT, EXISTING_PRODUCT_ID, \
     NON_EXISTENT_PRODUCT_ID, SEARCH_QUERIES_WITH_RESULTS, SEARCH_QUERIES_WITHOUT_RESULTS, SORT_BY, SORT_ORDER, \
-    EXISTING_CATEGORIES, NON_EXISTENT_CATEGORY, EXISTING_PRODUCT_IDS, PAGINATION_CASES, PRODUCT_SELECT
+    EXISTING_CATEGORIES, NON_EXISTENT_CATEGORY, EXISTING_PRODUCT_IDS, PAGINATION_CASES, PRODUCT_SELECT, \
+    NEGATIVE_PAGINATION_CASES
 from utils.validators import (assert_response_time, assert_product_list_structure, assert_product_structure,
                    assert_category_structure, assert_empty_response)
 
@@ -28,8 +29,8 @@ def test_get_single_product(api_client,product_id):
     assert data["id"] == product_id
     assert_product_structure(data)
 
-
-def test_fail_get_single_product(api_client):
+@pytest.mark.parametrize("product_id",NON_EXISTENT_PRODUCT_ID)
+def test_fail_get_single_product(api_client,product_id):
     product_id= NON_EXISTENT_PRODUCT_ID
     response = api_client.products.get_single_product(product_id)
 
@@ -64,6 +65,13 @@ def test_limit_and_skip_product(api_client, limit, skip):
 
     assert data["limit"] == limit
     assert data["skip"] == skip
+
+@pytest.mark.parametrize("limit,skip", NEGATIVE_PAGINATION_CASES)
+def test_negative_limit_and_skip_product(api_client,limit,skip):
+    response = api_client.products.limit_and_skip_product(limit=limit, skip=skip, select=PRODUCT_SELECT)
+
+    assert response.status_code == 400
+    assert_response_time(response)
 
 
 def test_filter_products(api_client):
@@ -101,8 +109,8 @@ def test_get_category_name(api_client,category_name):
     assert_response_time(response)
     assert_product_list_structure(response.json())
 
-
-def test_fail_get_category_name(api_client):
+@pytest.mark.parametrize("category_name",NON_EXISTENT_CATEGORY)
+def test_fail_get_category_name(api_client,category_name):
     category_name = NON_EXISTENT_CATEGORY
     response = api_client.products.get_category_name(category_name)
 
