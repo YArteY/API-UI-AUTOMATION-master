@@ -1,7 +1,7 @@
 import pytest
 
 from pages.login import LoginPage
-from utils.config import BASE_URL_UI
+from utils.config.ui_config import BASE_URL
 from data.users import UI_USER
 
 
@@ -9,7 +9,7 @@ from data.users import UI_USER
 class TestLoginPage:
 
     def test_login_page(self, driver):
-        driver.get(BASE_URL_UI)
+        driver.get(BASE_URL)
         login_page = LoginPage(driver)
         login_page.set_username(UI_USER["username"])
         login_page.set_password(UI_USER["password"])

@@ -1,5 +1,5 @@
 import requests
-from utils.config import BASE_URL,DEFAULT_HEADERS
+from utils.config.api_config import BASE_URL,DEFAULT_HEADERS
 from api.api_auth import AuthAPI
 from api.api_users import UsersAPI
 from api.api_products import ProductsAPI

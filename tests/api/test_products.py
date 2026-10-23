@@ -18,7 +18,7 @@ def test_get_all_products(api_client):
     assert_product_list_structure(response.json())
 
 @pytest.mark.parametrize("product_id",EXISTING_PRODUCT_IDS)
-def test_get_single_product(api_client,product_id):
+def test_get_product_by_id(api_client,product_id):
     response = api_client.products.get_single_product(product_id)
 
     assert response.status_code == 200
@@ -26,12 +26,14 @@ def test_get_single_product(api_client,product_id):
 
     data = response.json()
 
-    assert data["id"] == product_id
+    assert data["id"] == product_id, (
+        f"Expected product ID {product_id}, "
+        f"but received {data.get('id')}"
+    )
     assert_product_structure(data)
 
 @pytest.mark.parametrize("product_id",NON_EXISTENT_PRODUCT_ID)
-def test_fail_get_single_product(api_client,product_id):
-    product_id= NON_EXISTENT_PRODUCT_ID
+def test_get_product_by_id_not_found(api_client,product_id):
     response = api_client.products.get_single_product(product_id)
 
     assert response.status_code == 404
@@ -74,7 +76,7 @@ def test_negative_limit_and_skip_product(api_client,limit,skip):
     assert_response_time(response)
 
 
-def test_filter_products(api_client):
+def test_sort_products(api_client):
     sortBy = SORT_BY
     order = SORT_ORDER
     response = api_client.products.sort_products(sortBy=sortBy, order=order)
@@ -111,7 +113,6 @@ def test_get_category_name(api_client,category_name):
 
 @pytest.mark.parametrize("category_name",NON_EXISTENT_CATEGORY)
 def test_fail_get_category_name(api_client,category_name):
-    category_name = NON_EXISTENT_CATEGORY
     response = api_client.products.get_category_name(category_name)
 
     assert response.status_code == 200
@@ -138,7 +139,10 @@ def test_update_product(api_client):
     assert_response_time(response)
     data = response.json()
 
-    assert data["id"] == product_id
+    assert data["id"] == product_id, (
+        f"Expected product ID {product_id}, "
+        f"but received {data.get('id')}"
+    )
     assert data["title"] == payload["title"]
     assert data["description"] == payload["description"]
     assert data["price"] == payload["price"]
@@ -155,7 +159,10 @@ def test_patch_product(api_client):
     assert_response_time(response)
     data = response.json()
 
-    assert data["id"] == product_id
+    assert data["id"] == product_id, (
+        f"Expected product ID {product_id}, "
+        f"but received {data.get('id')}"
+    )
     assert data["title"] == payload["title"]
 
 
@@ -167,6 +174,9 @@ def test_delete_product(api_client):
     assert_response_time(response)
     data = response.json()
 
-    assert data["id"] == product_id
+    assert data["id"] == product_id, (
+        f"Expected product ID {product_id}, "
+        f"but received {data.get('id')}"
+    )
     assert data["isDeleted"] is True
 

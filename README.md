@@ -1,6 +1,6 @@
  UI Automation Framework
  
-![Pruebas](https://github.com/YArteY/API-UI-AUTOMATION-master/actions/workflows/tests.yml/badge.svg)
+[![Pruebas automatizadas](https://github.com/YArteY/API-UI-AUTOMATION-master/actions/workflows/tests.yml/badge.svg)](https://github.com/YArteY/API-UI-AUTOMATION-master/actions/workflows/tests.yml)
  
 Framework de automatización de pruebas **reutilizable**, pensado como proyecto base para
 validar tanto **APIs REST** como **interfaces web**. Está construido con **Python + pytest**

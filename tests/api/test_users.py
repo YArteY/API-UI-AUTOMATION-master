@@ -27,11 +27,14 @@ def test_get_single_user(api_client):
 
     data = response.json()
 
-    assert data["id"] == user_id
+    assert data["id"] == user_id, (
+        f"Expected product ID {user_id}, "
+        f"but received {data.get('id')}"
+    )
     assert_user_structure(data)
 
 
-def test_user_not_found(api_client):
+def test_get_user_by_id_not_found(api_client):
     user_id = NON_EXISTENT_USER_ID
     response = api_client.users.get_single_user(user_id)
 
@@ -49,7 +52,7 @@ def test_search_users(api_client, query):
     assert_users_list_structure(data)
 
 @pytest.mark.parametrize("query", USER_SEARCH_QUERIES_WITHOUT_RESULTS)
-def test_empty_users(api_client, query):
+def test_search_users_without_results(api_client, query):
     response = api_client.users.search_users(query=query)
 
     assert response.status_code == 200

@@ -1,4 +1,4 @@
-from utils.config import MAX_RESPONSE_TIME_SECONDS
+from utils.config.api_config import MAX_RESPONSE_TIME_SECONDS
 
 def assert_response_time(response,max_seconds=MAX_RESPONSE_TIME_SECONDS):
     assert response.elapsed.total_seconds() <= max_seconds

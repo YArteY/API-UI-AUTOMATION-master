@@ -8,7 +8,7 @@ from data.users import VALID_USER, UI_USER
 from api.api_client import ClientAPI
 from pages.login import LoginPage
 from pages.inventory import InventoryPage
-from utils.config import BASE_URL_UI
+from utils.config.ui_config import BASE_URL
 
 
 # ------------------------- Fixtures de API -------------------------
@@ -49,7 +49,7 @@ def driver():
 @pytest.fixture
 def login_page(driver):
     """Navega a la página de login y expone el Page Object listo para usar."""
-    driver.get(BASE_URL_UI)
+    driver.get(BASE_URL)
     return LoginPage(driver)
 
 
